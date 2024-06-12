@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGray">
+
+    <com.inetkr.base.presentation.base.adapter.BaseRecyclerView
+        android:id="@+id/homeRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:brv_padding_bottom="@dimen/margin_10_dp"
+        app:brv_padding_end="@dimen/margin_10_dp"
+        app:brv_padding_start="@dimen/margin_10_dp"
+        app:brv_text_no_result="@string/str_no_data"
+        app:brv_padding_top="@dimen/margin_10_dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/holder_note" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

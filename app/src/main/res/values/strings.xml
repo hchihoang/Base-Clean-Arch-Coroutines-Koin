@@ -1,0 +1,30 @@
+<resources>
+    <string name="str_no_connection">No network connection!</string>
+    <string name="error_place_holder">Error Happened.Try again!</string>
+    <string name="str_time_out">Server connection time exceededĂ</string>
+    <string name="str_no_data">No data</string>
+    <string name="str_login">Login</string>
+    <string name="str_button_login">Login</string>
+    <string name="str_still_don_t_have_an_account">Still don\'t have an account?</string>
+    <string name="str_sign_up">Sign up</string>
+    <string name="str_forgot_password">Forgot password?</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="str_login_success">Login Success</string>
+    <string name="token_expire">Login session expired</string>
+    <string name="msg_title_update_app">Notification</string>
+    <string name="sign_up">Sign up</string>
+    <string name="birthday">Birthday</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="subtitle_password">Password can only use “letters, digits and @/./+/-/_ only”, it must be at least 6 characters.</string>
+    <string name="language_agreement">By continuing, I agree to</string>
+    <string name="language_and">and</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="terms_of_use">Terms of Use</string>
+    <string name="ok">OK</string>
+    <string name="day_time_picker_format_day">%d</string>
+    <string name="str_is_empty">Required field</string>
+    <string name="str_this_email_isn_t_available">This email isn\'t available</string>
+    <string name="str_is_password_confirm_error">Those passwords don\'t match.</string>
+    <string name="sign_up_success">Sign Up Success</string>
+</resources>
