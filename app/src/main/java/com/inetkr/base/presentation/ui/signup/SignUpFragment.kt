@@ -25,9 +25,9 @@ import retrofit2.HttpException
 
 
 class SignUpFragment :
-    BaseFragment<SignUpViewModel, FragmentSignUpBinding>(FragmentSignUpBinding::inflate) {
+    BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding::inflate) {
 
-    override val viewModel: SignUpViewModel by viewModel()
+    private val viewModel: SignUpViewModel by viewModel()
     override fun backFromAddFragment() {
 
     }

@@ -2,9 +2,7 @@ package com.inetkr.base.presentation.base
 
 import androidx.viewbinding.ViewBinding
 
-interface BaseViewGroup<V : BaseViewModel, B : ViewBinding> {
-
-    val viewModel: V
+interface BaseViewGroup<B : ViewBinding> {
 
     var binding: B
 

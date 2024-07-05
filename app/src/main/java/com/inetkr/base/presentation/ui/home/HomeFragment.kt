@@ -12,12 +12,12 @@ import com.inetkr.base.utils.extensions.onRefresh
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment :
-    BaseFragment<HomeViewModel, FragmentHomeBinding>(FragmentHomeBinding::inflate) {
+    BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
     private val adapter: NoteAdapter by lazy {
         NoteAdapter(requireContext())
     }
-    override val viewModel: HomeViewModel by viewModel()
+    private val viewModel: HomeViewModel by viewModel()
     override fun backFromAddFragment() {
 
     }

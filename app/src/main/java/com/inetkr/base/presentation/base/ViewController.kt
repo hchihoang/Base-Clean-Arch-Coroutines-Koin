@@ -11,11 +11,11 @@ class ViewController(
     private val fragmentManager: FragmentManager
 ) {
 
-    private val listFragment: ArrayList<BaseFragment<*, *>> = arrayListOf()
-    var currentFragment: BaseFragment<*, *>? = null
+    private val listFragment: ArrayList<BaseFragment<*>> = arrayListOf()
+    var currentFragment: BaseFragment<*>? = null
         private set
 
-    fun <T : BaseFragment<*, *>> replaceFragment(type: Class<T>, data: Bundle? = null) {
+    fun <T : BaseFragment<*>> replaceFragment(type: Class<T>, data: Bundle? = null) {
         try {
             currentFragment = type.newInstance()
         } catch (e: InstantiationException) {
@@ -38,7 +38,7 @@ class ViewController(
 
     }
 
-    fun <T : BaseFragment<*, *>>addFragment(
+    fun <T : BaseFragment<*>>addFragment(
         type: Class<T>,
         data: Bundle? = null,
         hasAnimation: Boolean = true,

@@ -17,12 +17,11 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity :
-    BaseActivity<MainViewModel, ActivityMainBinding>(ActivityMainBinding::inflate) {
+class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
-    override var frameContainerId: Int = R.id.mainContainer
+    override var frameContainerId: Int = R.id.container
 
-    override val viewModel: MainViewModel by viewModel()
+    private val viewModel: MainViewModel by viewModel()
 
     override fun initView() {
         getViewController().addFragment(SplashFragment::class.java)

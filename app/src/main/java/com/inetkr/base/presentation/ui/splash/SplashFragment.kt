@@ -8,10 +8,9 @@ import com.inetkr.base.presentation.ui.home.HomeFragment
 import com.inetkr.base.presentation.ui.login.LoginFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SplashFragment :
-    BaseFragment<SplashViewModel, FragmentSplashBinding>(FragmentSplashBinding::inflate) {
+class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding::inflate) {
 
-    override val viewModel: SplashViewModel by viewModel()
+    private val viewModel: SplashViewModel by viewModel()
     override fun backFromAddFragment() {
 
     }

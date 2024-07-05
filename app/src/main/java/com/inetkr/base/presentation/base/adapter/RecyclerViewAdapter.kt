@@ -16,7 +16,7 @@ abstract class RecyclerViewAdapter(var context: Context?, enableSelectedMode: Bo
     private var listWrapperModels: ArrayList<ModelWrapper> = arrayListOf()
     private var listWrapperModelsBackup: ArrayList<ModelWrapper> = arrayListOf()
 
-    val inflater: LayoutInflater
+    private val inflater: LayoutInflater
     private var onItemClickListeners: OnItemClickListener? = null
     private var onItemTouchChangeListener: OnItemTouchChangedListener? = null
     private var onItemSelectionChangeListener: OnItemSelectionChangedListener? = null
@@ -40,10 +40,10 @@ abstract class RecyclerViewAdapter(var context: Context?, enableSelectedMode: Bo
     }
 
     fun backup() {
-        listWrapperModelsBackup = ArrayList(listWrapperModels!!.size)
+        listWrapperModelsBackup = ArrayList(listWrapperModels.size)
         try {
-            for (modelWrapper in listWrapperModels!!) {
-                listWrapperModelsBackup!!.add(modelWrapper.clone())
+            for (modelWrapper in listWrapperModels) {
+                listWrapperModelsBackup.add(modelWrapper.clone())
             }
         } catch (e: CloneNotSupportedException) {
             e.printStackTrace()
@@ -91,13 +91,13 @@ abstract class RecyclerViewAdapter(var context: Context?, enableSelectedMode: Bo
 
     fun clear() {
         val itemCount = itemCount
-        listWrapperModels!!.clear()
+        listWrapperModels.clear()
         notifyItemRangeRemoved(0, itemCount)
     }
 
     fun refresh(models: List<Any>) {
         val itemCount = itemCount
-        listWrapperModels!!.clear()
+        listWrapperModels.clear()
         notifyItemRangeRemoved(0, itemCount)
         addModels(models, false)
     }
@@ -135,19 +135,19 @@ abstract class RecyclerViewAdapter(var context: Context?, enableSelectedMode: Bo
     }
 
     fun addModel(model: Any?, isScroll: Boolean) {
-        addModel(listWrapperModels!!.size, model, isScroll)
+        addModel(listWrapperModels.size, model, isScroll)
     }
 
     fun addModel(model: Any?, isScroll: Boolean, isUpdate: Boolean) {
-        addModel(listWrapperModels!!.size, model, isScroll, isUpdate)
+        addModel(listWrapperModels.size, model, isScroll, isUpdate)
     }
 
     fun addModel(model: Any?, viewType: Int, isScroll: Boolean) {
-        addModel(listWrapperModels!!.size, model, viewType, isScroll)
+        addModel(listWrapperModels.size, model, viewType, isScroll)
     }
 
     fun addModel(model: Any?, viewType: Int, isScroll: Boolean, isUpdate: Boolean) {
-        addModel(listWrapperModels!!.size, model, viewType, isScroll, isUpdate)
+        addModel(listWrapperModels.size, model, viewType, isScroll, isUpdate)
     }
 
     fun addModel(index: Int, model: Any?, isScroll: Boolean) {
@@ -159,7 +159,7 @@ abstract class RecyclerViewAdapter(var context: Context?, enableSelectedMode: Bo
     }
 
     fun updateModel(position: Int, model: Any, isScroll: Boolean) {
-        getListWrapperModels()!![position].model = model
+        getListWrapperModels()[position].model = model
         notifyItemChanged(position)
         if (isScroll) {
             recyclerView!!.scrollToPosition(position)
@@ -175,7 +175,7 @@ abstract class RecyclerViewAdapter(var context: Context?, enableSelectedMode: Bo
         isUpdate: Boolean = true
     ) {
         val modelWrapper = ModelWrapper(model, viewType)
-        this.listWrapperModels!!.add(index, modelWrapper)
+        this.listWrapperModels.add(index, modelWrapper)
         if (isUpdate) {
             notifyItemInserted(index)
         }
@@ -191,7 +191,7 @@ abstract class RecyclerViewAdapter(var context: Context?, enableSelectedMode: Bo
     }
 
     fun removeModel(index: Int, isUpdate: Boolean) {
-        this.listWrapperModels!!.removeAt(index)
+        this.listWrapperModels.removeAt(index)
         if (isUpdate) {
             notifyItemRemoved(index)
         }
@@ -206,19 +206,19 @@ abstract class RecyclerViewAdapter(var context: Context?, enableSelectedMode: Bo
     }
 
     fun setSelectedItem(position: Int, isSelected: Boolean) {
-        if (isInSelectedMode && position >= 0 && position < listWrapperModels!!.size) {
-            val modelWrapper = listWrapperModels!![position]
+        if (isInSelectedMode && position >= 0 && position < listWrapperModels.size) {
+            val modelWrapper = listWrapperModels[position]
             if (modelWrapper.isSelected != isSelected) {
-                listWrapperModels!![position].isSelected = isSelected
+                listWrapperModels[position].isSelected = isSelected
                 notifyItemChanged(position)
             }
         }
     }
 
     fun deSelectAllItems(onEachUnSelectedItem: OnEachUnSelectedItem?) {
-        val size = listWrapperModels!!.size
+        val size = listWrapperModels.size
         for (i in 0 until size) {
-            val modelWrapper = listWrapperModels!![i]
+            val modelWrapper = listWrapperModels[i]
             if (onEachUnSelectedItem != null && !modelWrapper.isSelected) {
                 onEachUnSelectedItem.onEachUnselectedItem(modelWrapper)
             }
@@ -240,7 +240,7 @@ abstract class RecyclerViewAdapter(var context: Context?, enableSelectedMode: Bo
             })
 
             val diffResult = DiffUtil
-                .calculateDiff(initDiffUtilCallback(listWrapperModels!!, listItemLeft))
+                .calculateDiff(initDiffUtilCallback(listWrapperModels, listItemLeft))
 
             listWrapperModels = listItemLeft
             diffResult.dispatchUpdatesTo(this)
@@ -249,13 +249,13 @@ abstract class RecyclerViewAdapter(var context: Context?, enableSelectedMode: Bo
 
     fun isItemSelected(position: Int): Boolean {
         return isInSelectedMode && position >= 0 &&
-                position < listWrapperModels!!.size &&
-                listWrapperModels!![position].isSelected
+                position < listWrapperModels.size &&
+                listWrapperModels[position].isSelected
     }
 
     fun <T> getSelectedItemModel(type: Class<T>): List<T> {
         val result = ArrayList<T>()
-        for (modelWrapper in listWrapperModels!!) {
+        for (modelWrapper in listWrapperModels) {
             val model = modelWrapper.model
             if (modelWrapper.isSelected && model != null) {
                 if (model.javaClass == type) {
@@ -267,7 +267,7 @@ abstract class RecyclerViewAdapter(var context: Context?, enableSelectedMode: Bo
     }
 
     fun <T> forEachModels(type: Class<T>, onEachModel: OnEachModel<T>) {
-        for (modelWrapper in listWrapperModels!!) {
+        for (modelWrapper in listWrapperModels) {
             val model = modelWrapper.model
             if (model != null && model.javaClass == type) {
                 onEachModel.onEachModel(type.cast(model))
@@ -276,7 +276,7 @@ abstract class RecyclerViewAdapter(var context: Context?, enableSelectedMode: Bo
     }
 
     fun forEachItem(onEachItem: OnEachItem) {
-        for (modelWrapper in listWrapperModels!!) {
+        for (modelWrapper in listWrapperModels) {
             onEachItem.onEachItem(modelWrapper)
         }
     }
@@ -290,7 +290,7 @@ abstract class RecyclerViewAdapter(var context: Context?, enableSelectedMode: Bo
     }
 
     fun <T> getItem(position: Int, classType: Class<T>): T? {
-        return classType.cast(listWrapperModels!![position].model)
+        return classType.cast(listWrapperModels[position].model)
     }
 
     fun <T> getAllItem(classType: Class<T>): List<T> {
@@ -298,7 +298,7 @@ abstract class RecyclerViewAdapter(var context: Context?, enableSelectedMode: Bo
     }
 
     override fun getItemViewType(position: Int): Int {
-        return listWrapperModels!![position].viewType
+        return listWrapperModels[position].viewType
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -318,7 +318,7 @@ abstract class RecyclerViewAdapter(var context: Context?, enableSelectedMode: Bo
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val modelWrapper = listWrapperModels!![position]
+        val modelWrapper = listWrapperModels[position]
         val viewType = modelWrapper.viewType
         if (onItemSelectionChangeListener != null) {
             onItemSelectionChangeListener!!.onItemSelectionChanged(
@@ -357,13 +357,13 @@ abstract class RecyclerViewAdapter(var context: Context?, enableSelectedMode: Bo
     }
 
     fun clearListSelectedItems() {
-        for (modelWrapper in listWrapperModels!!) {
+        for (modelWrapper in listWrapperModels) {
             modelWrapper.isSelected = false
         }
     }
 
     override fun getItemCount(): Int {
-        return listWrapperModels!!.size
+        return listWrapperModels.size
     }
 
     interface OnItemClickListener {

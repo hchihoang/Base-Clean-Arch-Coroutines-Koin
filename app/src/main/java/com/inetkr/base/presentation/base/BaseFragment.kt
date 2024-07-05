@@ -18,9 +18,9 @@ import com.inetkr.base.utils.extensions.gone
 import com.inetkr.base.utils.extensions.visible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-abstract class BaseFragment<V : BaseViewModel, B : ViewBinding>(val bindingFactory: (LayoutInflater) -> B) :
+abstract class BaseFragment<B : ViewBinding>(val bindingFactory: (LayoutInflater) -> B) :
     Fragment(),
-    BaseViewGroup<V, B>,
+    BaseViewGroup< B>,
     ProgressBarManager {
 
     override lateinit var binding: B
@@ -57,7 +57,7 @@ abstract class BaseFragment<V : BaseViewModel, B : ViewBinding>(val bindingFacto
 
     fun getVC(): ViewController {
         if (viewController == null) {
-            viewController = (activity as BaseActivity<*, *>).getViewController()
+            viewController = (activity as BaseActivity<*>).getViewController()
         }
 
         return viewController!!
@@ -157,8 +157,8 @@ abstract class BaseFragment<V : BaseViewModel, B : ViewBinding>(val bindingFacto
     }
 
     protected open fun handleNetworkError(throwable: Throwable?, isShowDialog: Boolean) {
-        if (activity != null && activity is BaseActivity<*, *>) {
-            (activity as? BaseActivity<*, *>?)?.handleNetworkError(
+        if (activity != null && activity is BaseActivity<*>) {
+            (activity as? BaseActivity<*>?)?.handleNetworkError(
                 throwable,
                 isShowDialog
             )

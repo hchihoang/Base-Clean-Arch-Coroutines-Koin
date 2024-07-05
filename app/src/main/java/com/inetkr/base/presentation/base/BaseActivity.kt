@@ -19,8 +19,8 @@ import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
-abstract class BaseActivity<V : BaseViewModel, B : ViewBinding>(val bindingFactory: (LayoutInflater) -> B) :
-    AppCompatActivity(), BaseViewGroup<V, B> {
+abstract class BaseActivity<B : ViewBinding>(val bindingFactory: (LayoutInflater) -> B) :
+    AppCompatActivity(), BaseViewGroup<B> {
 
     final override lateinit var binding: B
     abstract var frameContainerId: Int

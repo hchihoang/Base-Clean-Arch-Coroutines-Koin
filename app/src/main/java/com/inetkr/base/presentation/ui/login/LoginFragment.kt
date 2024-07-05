@@ -12,9 +12,9 @@ import com.inetkr.base.utils.extensions.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment :
-    BaseFragment<LoginViewModel, FragmentLoginBinding>(FragmentLoginBinding::inflate) {
+    BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
 
-    override val viewModel: LoginViewModel by viewModel()
+    private val viewModel: LoginViewModel by viewModel()
     override fun backFromAddFragment() {
 
     }
