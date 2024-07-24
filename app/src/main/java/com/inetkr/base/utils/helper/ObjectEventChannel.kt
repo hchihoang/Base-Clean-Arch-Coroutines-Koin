@@ -1,16 +1,13 @@
 package com.inetkr.base.utils.helper
 
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.ReceiveChannel
-import kotlinx.coroutines.channels.SendChannel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
+
 object ObjectEventChannel {
-    private val channel = Channel<Any>()
+    private val _eventFlow = MutableSharedFlow<Any>()
+    val eventFlow = _eventFlow.asSharedFlow()
 
-    fun getSendChannel(): SendChannel<Any> {
-        return channel
-    }
-
-    fun getChannel(): ReceiveChannel<Any> {
-        return channel
+    suspend fun sendEvent(event: Any) {
+        _eventFlow.emit(event)
     }
 }

@@ -1,7 +1,7 @@
 <resources>
     <string name="str_no_connection">No network connection!</string>
     <string name="error_place_holder">Error Happened.Try again!</string>
-    <string name="str_time_out">Server connection time exceededĂ</string>
+    <string name="str_time_out">Server connection time exceeded</string>
     <string name="str_no_data">No data</string>
     <string name="str_login">Login</string>
     <string name="str_button_login">Login</string>
