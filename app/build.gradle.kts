@@ -84,6 +84,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.lifecycle.extensions)
     implementation(libs.wheelpicker)
     implementation(libs.glide)
     implementation(libs.androidx.legacy.support.v4)

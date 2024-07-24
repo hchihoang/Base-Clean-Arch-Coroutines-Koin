@@ -29,6 +29,7 @@ legacySupportV4 = "1.0.0"
 lifecycleLivedataKtx = "2.8.3"
 fragmentKtx = "1.8.1"
 wheelpicker_version = "0.4.0"
+lifecycle_extensions_version = "2.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,6 +46,7 @@ cardview = { group = "androidx.cardview", name = "cardview", version.ref = "card
 recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview_version" }
 multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex_version" }
 swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout_version" }
+lifecycle-extensions = { group = "androidx.lifecycle", name = "lifecycle-extensions", version.ref = "lifecycle_extensions_version" }
 
 #ViewModel
 lifecycle = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle_viewmodel_version" }

@@ -1,5 +1,6 @@
 package com.inetkr.base.data.source.remote
 
+import android.util.Log
 import com.google.gson.Gson
 import com.inetkr.base.domain.entity.request.RequestError
 import com.inetkr.base.utils.Define
@@ -10,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -20,8 +22,10 @@ class TokenInterceptor : Interceptor {
         val ongoing = mainRequest.newBuilder()
         val mainResponse = chain.proceed(ongoing.build())
         if (mainResponse.code == Define.Api.Http.RESPONSE_CODE_ACCESS_TOKEN_EXPIRED) {
-            TokenInterceptorScope.scope.launch {
-                ObjectEventChannel.sendEvent(Event.TokenExpire())
+            runBlocking {
+                CoroutineScope(Dispatchers.IO).launch {
+                    ObjectEventChannel.sendEvent(Event.TokenExpire())
+                }.join()
             }
         } else if (mainResponse.code == Define.Api.Http.RESPONSE_CODE_UPDATE_APP || mainResponse.code == Define.Api.Http.RESPONSE_CODE_MAINTENANCE) {
             val msg = mainResponse.body?.string().toString()
@@ -30,18 +34,17 @@ class TokenInterceptor : Interceptor {
             } catch (e: Exception) {
                 null
             }
-            TokenInterceptorScope.scope.launch {
-                ObjectEventChannel.sendEvent(Event.UpdateApp(error?.errorMessage ?: "", mainResponse.code))
+            runBlocking {
+                CoroutineScope(Dispatchers.IO).launch {
+                    ObjectEventChannel.sendEvent(
+                        Event.UpdateApp(
+                            error?.errorMessage ?: "",
+                            mainResponse.code
+                        )
+                    )
+                }.join()
             }
         }
         return mainResponse
-    }
-}
-
-object TokenInterceptorScope {
-    val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-
-    fun cancelScope() {
-        scope.cancel()
     }
 }

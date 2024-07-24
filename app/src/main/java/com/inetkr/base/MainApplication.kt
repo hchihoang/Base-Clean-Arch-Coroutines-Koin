@@ -2,7 +2,6 @@ package com.inetkr.base
 
 import android.app.Application
 import androidx.multidex.MultiDex
-import com.inetkr.base.data.source.remote.TokenInterceptorScope
 import com.inetkr.base.di.AppModule
 import com.inetkr.base.di.NetworkModule
 import com.inetkr.base.di.SharePrefModule
@@ -21,11 +20,5 @@ class MainApplication : Application() {
             androidContext(this@MainApplication)
             modules(listOf(AppModule, NetworkModule, SharePrefModule))
         }
-    }
-
-    override fun onTerminate() {
-        super.onTerminate()
-        // Cancel the scope when the application is terminating
-        TokenInterceptorScope.cancelScope()
     }
 }
