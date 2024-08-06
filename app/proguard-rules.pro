@@ -51,3 +51,12 @@
 -dontwarn retrofit2.**
 -dontwarn okhttp3.**
 -dontwarn jp.wasabeef.glide.**
+
+-dontwarn coil.Coil
+-dontwarn coil.ImageLoader
+-dontwarn coil.request.LoadRequest$Companion
+-dontwarn coil.request.LoadRequest
+-dontwarn coil.request.LoadRequestBuilder
+-dontwarn coil.request.RequestBuilder
+-dontwarn coil.request.RequestDisposable
+-dontwarn coil.size.Scale

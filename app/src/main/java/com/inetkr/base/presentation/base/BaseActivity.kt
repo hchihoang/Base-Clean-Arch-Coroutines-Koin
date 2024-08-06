@@ -48,13 +48,15 @@ abstract class BaseActivity<B : ViewBinding>(val bindingFactory: (LayoutInflater
         initListener()
     }
 
+    @Deprecated("Deprecated in Java")
+    @Suppress("MissingSuperCall")
     override fun onBackPressed() {
         if (viewController != null && viewController?.currentFragment != null) {
             if (viewController?.currentFragment?.backPressed() == true) {
-                super.onBackPressed()
+                onBackPressedDispatcher.onBackPressed()
             }
         } else {
-            super.onBackPressed()
+            onBackPressedDispatcher.onBackPressed()
         }
     }
 

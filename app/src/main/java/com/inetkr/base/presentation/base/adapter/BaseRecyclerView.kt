@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.inetkr.base.R
 import com.inetkr.base.databinding.LayoutBaseRecyclerviewBinding
-import com.inetkr.base.domain.entity.response.Note
 import com.inetkr.base.presentation.base.adapter.EndlessLoadingRecyclerViewAdapter.OnLoadingMoreListener
 import com.inetkr.base.utils.extensions.ProjectColors
 import com.inetkr.base.utils.extensions.color
@@ -106,7 +105,7 @@ class BaseRecyclerView : RelativeLayout {
         binding.rcvData.layoutManager = layoutManager
     }
 
-    fun refresh(data: List<Note>) {
+    fun refresh(data: List<Any>) {
         if (data.isEmpty()) {
             binding.tvNoResult.visibility = View.VISIBLE
         } else {
