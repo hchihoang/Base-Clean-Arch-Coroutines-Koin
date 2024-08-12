@@ -110,8 +110,8 @@ class BaseRecyclerView : RelativeLayout {
             binding.tvNoResult.visibility = View.VISIBLE
         } else {
             binding.tvNoResult.visibility = View.GONE
-            mAdapter?.refresh(data)
         }
+        mAdapter?.refresh(data)
         binding.swipeRefresh.isRefreshing = false
     }
 
