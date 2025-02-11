@@ -1,4 +1,4 @@
-package com.inetkr.base
+package com.inetkr.base.presentation.base
 
 import android.app.Application
 import androidx.multidex.MultiDex
